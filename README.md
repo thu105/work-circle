@@ -1,4 +1,4 @@
-# work-circle
+# WorkCircle
 A social networking app for internal employees.
 
 ## Stack
