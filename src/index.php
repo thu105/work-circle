@@ -2,8 +2,12 @@
 <html lang="en">
 
 <?php
-session_start();
 require_once 'header.php';
+if($loggedin) {
+  header('Location: '.$uri.'/profile.php');
+} else {
+  header('Location: '.$uri.'/authenticate.php');
+}
 ?>
 
 </html>
