@@ -63,13 +63,13 @@ if (isset($_SESSION['user'])) {
               </li>';
           } else {
             echo '<li class="nav-item p-1">
-                <form action="authenticate.php" method="post" id="authenticate">
-                  <button class="btn btn-primary" type="submit" name="signup">Signup</button>
+                <form action="signup.php" method="post" id="signup">
+                  <button class="btn btn-primary" type="submit">Signup</button>
                 </form>
               </li>
               <li class="nav-item p-1">
-                <form action="authenticate.php" method="post" id="authenticate">
-                  <button class="btn btn-outline-success" type="submit" name="login">Login</button>
+                <form action="login.php" method="post" id="login">
+                  <button class="btn btn-outline-success" type="submit">Login</button>
                 </form>
               </li>';
           }

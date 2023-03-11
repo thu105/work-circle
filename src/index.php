@@ -6,7 +6,7 @@ require_once 'header.php';
 if($loggedin) {
   header('Location: '.$uri.'/profile.php');
 } else {
-  header('Location: '.$uri.'/authenticate.php');
+  header('Location: '.$uri.'/login.php');
 }
 ?>
 
