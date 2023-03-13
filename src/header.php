@@ -59,7 +59,9 @@ if (isset($_SESSION['username'])) {
                 <a class="nav-link" href="profile.php">Profile</a>
               </li>
               <li class="nav-item px-1">
-                <button class="btn btn-outline-success" type="logout">Logout</button>
+                <form action="authenticate.php" method="post" id="logout">
+                  <button class="btn btn-outline-success" type="submit" name="logout">Logout</button>
+                </form>
               </li>';
           } else {
             echo '<li class="nav-item p-1">
