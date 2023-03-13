@@ -12,7 +12,7 @@
   createTable('user',
               'user_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
               username VARCHAR(255) NOT NULL UNIQUE,
-              password VARCHAR(255) NOT NULL,
+              password VARCHAR(64) NOT NULL,
               INDEX(username(6))');
 ?>
 

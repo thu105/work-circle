@@ -13,8 +13,8 @@ $uri = substr($uri,0,strripos($uri,'/'));
 $login_status = 'Unauthorized';
 $randstr = substr(md5(rand()), 0, 7);
 $loggedin = FALSE;
-if (isset($_SESSION['user'])) {
-  $user = $_SESSION['user'];
+if (isset($_SESSION['username'])) {
+  $user = $_SESSION['username'];
   $loggedin = TRUE;
   $login_status = "Logged in as: $user";
 }
@@ -59,7 +59,9 @@ if (isset($_SESSION['user'])) {
                 <a class="nav-link" href="profile.php">Profile</a>
               </li>
               <li class="nav-item px-1">
-                <button class="btn btn-outline-success" type="logout">Logout</button>
+                <form action="authenticate.php" method="post" id="logout">
+                  <button class="btn btn-outline-success" type="submit" name="logout">Logout</button>
+                </form>
               </li>';
           } else {
             echo '<li class="nav-item p-1">
