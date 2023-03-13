@@ -2,7 +2,15 @@
 require_once 'header.php';
 
 function authenticateUser(string $username, string $password): bool{
-  return true;
+  $passwordHash = hash('sha256', $password);
+  $result = queryMysql("SELECT * FROM user WHERE username='$username' AND password='$passwordHash'");
+  if($result->rowCount()){
+    $_SESSION['username']=$username;
+    return true;
+  }
+
+  $_SESSION['error']="The username or password is incorrect.";
+  return false;
 }
 
 function singupUser(string $username, string $password, string $confirmPassword): bool {
@@ -25,25 +33,20 @@ function singupUser(string $username, string $password, string $confirmPassword)
   $passwordHash = hash('sha256', $password);
   try {
     $result = queryMysql("INSERT INTO user (username, password) VALUES ('$username','$passwordHash');");
+    $_SESSION['username']=$username;
+    return true;
   } catch (PDOException $e) {
     $_SESSION['error']=$e->getMessage();
     return false;
   }
-
-  $_SESSION['username']=$username;
-  return true;
 }
 
 if (isset($_POST['login'])){
   if(authenticateUser(sanitizeString($_POST['username']),sanitizeString($_POST['password']))){
-    $_SESSION['username']=sanitizeString($_POST['username']);
     header('Location: '.$uri.'/profile.php');
-    exit();
   } else {
-    $_SESSION['error']='LOGIN ERROR';
-    unset($_SESSION['username']);
+    header('Location: '.$uri.'/login.php');
   }
-  header('Location: '.$uri.'/login.php');
 } else if (isset($_POST['signup'])) {
   if (singupUser(sanitizeString($_POST['username']),sanitizeString($_POST['password']),sanitizeString($_POST['confirm-password']))){
     header('Location: '.$uri.'/profile.php');
