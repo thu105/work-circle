@@ -7,12 +7,12 @@ function authenticateUser(string $username, string $password): bool{
 
 if (isset($_POST['login'])){
   if(authenticateUser(sanitizeString($_POST['username']),sanitizeString($_POST['password']))){
-    $_SESSION['user']=sanitizeString($_POST['username']);
+    $_SESSION['username']=sanitizeString($_POST['username']);
     header('Location: '.$uri.'/profile.php');
     exit();
   } else {
     $_SESSION['error']='LOGIN ERROR';
-    unset($_SESSION['user']);
+    unset($_SESSION['username']);
   }
   header('Location: '.$uri.'/login.php');
 } else if (isset($_POST['signup'])) {

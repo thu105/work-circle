@@ -13,8 +13,8 @@ $uri = substr($uri,0,strripos($uri,'/'));
 $login_status = 'Unauthorized';
 $randstr = substr(md5(rand()), 0, 7);
 $loggedin = FALSE;
-if (isset($_SESSION['user'])) {
-  $user = $_SESSION['user'];
+if (isset($_SESSION['username'])) {
+  $user = $_SESSION['username'];
   $loggedin = TRUE;
   $login_status = "Logged in as: $user";
 }
