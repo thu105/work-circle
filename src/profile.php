@@ -9,9 +9,13 @@ if(!$loggedin){
   exit();
 }
 
-// Add User Profile Here
+$user = $_SESSION['username'];
 
-echo "<h3>Your Profile</h3>";
+echo "<div class='container mt-5'>
+        <div class='card text-bg-light'>
+          <h3 class='card-header'>Your Profile</h3>
+          <div class='row'>
+            <div class='col-md-4'>";
   $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
     
   if (isset($_POST['text']))
@@ -37,7 +41,7 @@ echo "<h3>Your Profile</h3>";
 
   if (isset($_FILES['image']['name']))
   {
-    $saveto = "$user.jpg";
+    $saveto = "img\\$user.jpg";
     move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
     $typeok = TRUE;
 
@@ -86,16 +90,19 @@ echo "<h3>Your Profile</h3>";
   showProfile($user);
 
 echo <<<_END
-      <form data-ajax='false' method='post'
-        action='profile.php?r=$randstr' enctype='multipart/form-data'>
-      <h3>Enter or edit your details and/or upload an image</h3>
-      <textarea name='text'>$text</textarea><br>
-      Image: <input type='file' name='image' size='14'>
-      <input type='submit' value='Save Profile'>
-      </form>
-    </div><br>
-  </body>
-</html>
+  </div>
+</div>
+<div class="container mt-5 py-10">
+  <form data-ajax='false' method='post' action='profile.php?r=$randstr' enctype='multipart/form-data'>
+    <h3>Enter or edit your details and/or upload an image</h3>
+    <h5>Details:</h5>
+    <textarea class="form-control form-control-lg" name='text'>$text</textarea>
+    <br>
+    <h5>Image:</h5>
+    <input class="form-control form-control-lg" type='file' name='image' size='14'>
+    <button type="submit" class="btn btn-primary w-100 my-3 btn-lg" name="login" value='Save Profile'>Save Profile</button>
+  </form>
+</div>
 _END;
 ?>
 

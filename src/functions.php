@@ -57,16 +57,26 @@
   {
     global $pdo;
 
-    if (file_exists("$user.jpg"))
-      echo "<img src='$user.jpg' style='float:left;'>";
+    if (file_exists("img\\$user.jpg"))
+      echo "<img src='img\\$user.jpg' class='img-fluid rounded-start'>";
+    else
+      echo '<rect width="100%" height="100%" fill="#868e96"></rect>
+            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">No Image</text>';
 
     $result = $pdo->query("SELECT * FROM profiles WHERE user='$user'");
 
+    echo "</div>
+          <div class='col-md-8'>
+            <div class='card-body'>
+              <h5 class='card-title'>$user</h5>
+              <p class='card-text'>";
     while ($row = $result->fetch())
     {
-      die(stripslashes($row['text']) . "<br style='clear:left;'><br>");
+      echo stripslashes($row['text']).'<br>';
     }
-    
-    echo "<p>Nothing to see here, yet</p><br>";
+    echo '      </p>
+              </div>
+            </div>
+          </div>';
   }
 ?>
