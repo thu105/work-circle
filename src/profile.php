@@ -58,7 +58,7 @@ echo "<div class='container mt-5'>
     {
       list($w, $h) = getimagesize($saveto);
 
-      $max = 100;
+      $max = 500;
       $tw  = $w;
       $th  = $h;
 
