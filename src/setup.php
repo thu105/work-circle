@@ -14,6 +14,10 @@
               username VARCHAR(255) NOT NULL UNIQUE,
               password VARCHAR(64) NOT NULL,
               INDEX(username(6))');
+  createTable('profiles',
+              'user VARCHAR(16),
+              text VARCHAR(4096),
+              INDEX(user(6))');
 ?>
 
     <br>Completed.
