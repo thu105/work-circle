@@ -45,7 +45,7 @@ if (isset($_SESSION['username'])) {
 
         <ul class="navbar-nav">
           <li class="nav-item px-1">
-            <a class="nav-link" href="members.php">Members</a>
+            <a class="nav-link" href="members.php?view=<?php echo $_SESSION['username']?>">Members</a>
           </li>
           <li class="nav-item px-1">
             <a class="nav-link" href="friends.php">Friends</a>

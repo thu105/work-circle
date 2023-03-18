@@ -18,6 +18,11 @@
               'user VARCHAR(16),
               text VARCHAR(4096),
               INDEX(user(6))');
+  createTable('friends',
+              'username VARCHAR(255) NOT NULL,
+              friend VARCHAR(255),
+              INDEX(username(6)),
+              INDEX(friend(6))');
 ?>
 
     <br>Completed.
