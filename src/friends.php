@@ -27,18 +27,18 @@ if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);
   }
 
   // Uncomment this line if you wish the user’s profile to show here
-  // showProfile($view);
+  showProfile($view);
 
   $followers = array();
   $following = array();
 
-  $result = queryMysql("SELECT * FROM friends WHERE user='$view'");
+  $result = queryMysql("SELECT * FROM friends WHERE username='$view'");
 
   $j = 0;
   
   while ($row = $result->fetch())
   {
-    $followers[$j+] = $row['friend'];
+    $followers[$j++] = $row['friend'];
   }
 
   $result = queryMysql("SELECT * FROM friends WHERE friend='$view'");
@@ -47,7 +47,7 @@ if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);
 
   while ($row = $result->fetch())
   {
-    $following[$j++] = $row['user'];
+    $following[$j++] = $row['username'];
   }
 
   $mutual    = array_intersect($followers, $following);
@@ -59,9 +59,10 @@ if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);
   
   if (sizeof($mutual))
   {
-    echo "<span class='subhead'>$name2 mutual friends</span><ul>";
+    echo "<h2>$name2 mutual friends</h2>
+          <ul class='list-group'>";
     foreach($mutual as $friend)
-      echo "<li><a data-transition='slide'
+      echo "<li class='list-group-item'><a data-transition='slide'
             href='members.php?view=$friend&r=$randstr'>$friend</a>";
     echo "</ul>";
     $friends = TRUE;
@@ -69,9 +70,9 @@ if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);
 
   if (sizeof($followers))
   {
-    echo "<span class='subhead'>$name2 followers</span><ul>";
+    echo "<h2>$name2 followers</h2><ul class='list-group'>";
     foreach($followers as $friend)
-      echo "<li><a data-transition='slide'
+      echo "<li class='list-group-item'><a data-transition='slide'
             href='members.php?view=$friend&r=$randstr'>$friend</a>";
     echo "</ul>";
     $friends = TRUE;
@@ -79,9 +80,9 @@ if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);
 
   if (sizeof($following))
   {
-    echo "<span class='subhead'>$name3 following</span><ul>";
+    echo "<h2>$name3 following</h2><ul class='list-group'>";
     foreach($following as $friend)
-      echo "<li><a data-transition='slide'
+      echo "<li class='list-group-item'><a data-transition='slide'
             href='members.php?view=$friend&r=$randstr'>$friend</a>";
     echo "</ul>";
     $friends = TRUE;
