@@ -56,6 +56,11 @@
   function showProfile($user)
   {
     global $pdo;
+    echo "<div class='container mt-5'>
+          <div class='card text-bg-light'>
+          <h3 class='card-header'>Your Profile</h3>
+          <div class='row'>
+            <div class='col-md-4'>";
 
     if (file_exists("img\\$user.jpg"))
       echo "<img src='img\\$user.jpg' class='img-fluid rounded-start'>";
@@ -77,6 +82,7 @@
     echo '      </p>
               </div>
             </div>
-          </div>';
+          </div>
+        </div>';
   }
 ?>
