@@ -15,10 +15,10 @@ if (isset($_GET['view'])) {
   $view = sanitizeString($_GET['view']);
 
   if ($view == $user) $name = "Your";
-    else                $name = "$view's";
+  else $name = "$view's";
 
   
-  //showProfile($view);
+  // showProfile($view);
 
   // echo "<a data-role='button' data-transition='slide'
   //         href='messages.php?view=$view&r=$randstr'>View $name messages</a>";
@@ -32,7 +32,7 @@ if (isset($_GET['view'])) {
     $result = queryMysql("SELECT * FROM friends
       WHERE username='$add' AND friend='$user'");
     
-    if (!$result->rowCount)
+    if (!$result->rowCount())
       queryMysql("INSERT INTO friends VALUES ('$add', '$user')");
   }
   elseif (isset($_GET['remove']))
@@ -45,12 +45,14 @@ if (isset($_GET['view'])) {
 
   $result = queryMysql("SELECT username FROM user ORDER BY user_id");
   $num    = $result->rowCount();
-
+  echo "<div class='container mt-5 py-10'>
+          <h2> Members </h2>
+          <ul class='list-group'>";
   while ($row = $result->fetch())
   {
     if ($row['username'] == $user) continue;
 
-    echo "<li><a data-transition='slide' href='members.php?view=" .
+    echo "<li class='list-group-item'><a data-transition='slide' href='members.php?view=" .
       $row['username'] . "&$randstr'>" . $row['username'] . "</a>";
     $follow = "follow";
 
