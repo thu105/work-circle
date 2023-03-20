@@ -11,11 +11,7 @@ if(!$loggedin){
 
 $user = $_SESSION['username'];
 
-echo "<div class='container mt-5'>
-        <div class='card text-bg-light'>
-          <h3 class='card-header'>Your Profile</h3>
-          <div class='row'>
-            <div class='col-md-4'>";
+
   $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
     
   if (isset($_POST['text']))
@@ -86,12 +82,9 @@ echo "<div class='container mt-5'>
       imagedestroy($src);
     }
   }
-
   showProfile($user);
 
 echo <<<_END
-  </div>
-</div>
 <div class="container mt-5 py-10">
   <form data-ajax='false' method='post' action='profile.php?r=$randstr' enctype='multipart/form-data'>
     <h3>Enter or edit your details and/or upload an image</h3>
