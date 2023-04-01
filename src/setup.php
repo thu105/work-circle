@@ -23,6 +23,15 @@
               friend VARCHAR(255),
               INDEX(username(6)),
               INDEX(friend(6))');
+  createTable('messages', 
+              'id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              sender VARCHAR(16),
+              receiver VARCHAR(16),
+              pm CHAR(1),
+              time INT UNSIGNED,
+              message VARCHAR(4096),
+              INDEX(sender(6)),
+              INDEX(receiver(6))');
 ?>
 
     <br>Completed.

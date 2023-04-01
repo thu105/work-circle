@@ -52,7 +52,7 @@ if (isset($_GET['view'])) {
   {
     if ($row['username'] == $user) continue;
 
-    echo "<li class='list-group-item'><a data-transition='slide' href='members.php?view=" .
+    echo "<li class='list-group-item'><a data-transition='slide' href='messages.php?view=" .
       $row['username'] . "&$randstr'>" . $row['username'] . "</a>";
     $follow = "follow";
 
