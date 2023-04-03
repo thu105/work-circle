@@ -65,8 +65,7 @@
     if (file_exists("img\\$user.jpg"))
       echo "<img src='img\\$user.jpg' class='img-fluid rounded-start'>";
     else
-      echo '<rect width="100%" height="100%" fill="#868e96"></rect>
-            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">No Image</text>';
+      echo "<img src='placeholder.jpg' class='img-fluid rounded-start'>";
 
     $result = $pdo->query("SELECT * FROM profiles WHERE user='$user'");
 
