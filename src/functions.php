@@ -53,27 +53,32 @@
     return str_replace("'", "", $result); // So now remove them
   }
 
-  function showProfile($user)
+  function showProfile($view)
   {
     global $pdo;
+
+    $title = 'Your Profile';
+    if($view != $_SESSION['username']){
+      $title = "$view's Profile";
+    }
+
     echo "<div class='container mt-5'>
           <div class='card text-bg-light'>
-          <h3 class='card-header'>Your Profile</h3>
+          <h3 class='card-header'>$title</h3>
           <div class='row'>
             <div class='col-md-4'>";
 
-    if (file_exists("img\\$user.jpg"))
-      echo "<img src='img\\$user.jpg' class='img-fluid rounded-start'>";
+    if (file_exists("img\\$view.jpg"))
+      echo "<img src='img\\$view.jpg' class='img-fluid rounded-start'>";
     else
-      echo '<rect width="100%" height="100%" fill="#868e96"></rect>
-            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">No Image</text>';
+      echo "<img src='placeholder.jpg' class='img-fluid rounded-start'>";
 
-    $result = $pdo->query("SELECT * FROM profiles WHERE user='$user'");
+    $result = $pdo->query("SELECT * FROM profiles WHERE user='$view'");
 
     echo "</div>
           <div class='col-md-8'>
             <div class='card-body'>
-              <h5 class='card-title'>$user</h5>
+              <h5 class='card-title'>$view</h5>
               <p class='card-text'>";
     while ($row = $result->fetch())
     {
