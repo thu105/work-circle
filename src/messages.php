@@ -1,7 +1,11 @@
 <?php 
   require_once 'header.php';
-  
-  if (!$loggedin) die("</div></body></html>");
+
+  if(!$loggedin){
+    $_SESSION['error']="You need to be logged in to access the app.";
+    header('Location: '.$uri.'/login.php');
+    exit();
+  }
 
   if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);
   else                      $view = $user;
